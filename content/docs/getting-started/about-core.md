@@ -16,17 +16,13 @@ toc = true
 top = false
 +++
 
-Kokoro 自身的设计在于抽象，其更像是一个编程范式，而不是一个库。
+Kokoro 框架的设计理念主要聚焦于抽象和可扩展性，它旨在成为一种编程范式而非传统库。在 Rust 语言中，我们能够为几乎所有类型实现自定义特征。
 
-在 Rust 中，我们可以为几乎一切的类型去实现自己的特征。在 Kokoro 中，我们利用这个特性，将 `Context` 定义为可扩展的上下文。
+利用这一特性，Kokoro 将 `Context` 定义为一个可扩展的上下文。通过在 `Context` 上实现方法，用户可以扩展当前上下文的功能。
 
-> 在 `Context` 上实现方法，意味着扩展当前上下文的功能。
+此外，用户可以将自己的类型实例包装在 `Context` 实例中，从而利用 `Context` 提供的独特方法。值得注意的是，`Context` 支持在线程间转移且可复制，因此需要使用 `Arc` 对类型进行包装。
 
-你可以将自己的类型实例使用 `Context` 实例包装，进而利用 `Context` 上独有的方法。并且 `Context` 是可在线程间转移且可复制的。
-
-这意味着你的类型需要 `Arc` 包装
-
-当 `Context` 解引用时，他会变为被包装类型实例的引用，所以在被 `Context` 扩展的同时，实例本身也是可访问的。
+当 `Context` 解引用时，它将变为被包装类型实例的引用，从而在扩展的同时保持实例的可访问性。
 
 ```rust
 struct MyStruct;
@@ -39,9 +35,9 @@ let context = context.with(Arc::new(Scope::create(Arc::new(MyStruct))));
 context.hello_kokoro();
 ```
 
-由此我们可以看出，`Context` 作为一个扩展的携带者，为你自己的类型进行了扩展，这也是一种理解的方式。
+在这个例子中，`Context` 作为扩展的载体，为用户自定义类型提供了扩展能力。
 
-同样 `Context` 不止作为扩展者扩展其他类型，其自身也具有一个类型实例伴随其终生。
+同时，`Context` 不仅具备扩展其他类型的能力，还拥有一个伴随其生命周期的类型实例。
 
 ```rust
 struct Global;
@@ -50,42 +46,28 @@ let scope = Scope::create(Arc::new(MyStruct));
 let context = Context::create(Arc::new(scope), Arc::new(Global));
 ```
 
-当 `Context` 当中的 `Global` 用于携带 `Context` 自身扩展中所需要的类型实例。
+在 `Context` 中，`Global` 负责承载 `Context` 自身扩展过程中所需的类型实例。这与 `kokoro-flume-channel` 中的 `MPSC` 类似，后者存储了 `sender`、`receiver` 和 `runner`。
 
-就像 `kokoro-flume-channel` 中的 `MPSC` 存储了 `sender`，`receiver` 和 `runner` 一样。
+在泛型中，我们将 `Global` 称为 `Mode`，因为它代表了 `Context` 的工作模式。
 
-在泛型中，我们也将 `Global` 称为 `Mode` 正因为其代表着 `Context` 在何种模式下工作。
+关于发布订阅功能，Kokoro 最初是作为发布订阅模式框架而诞生的。尽管我们对 Kokoro 的定义和实现进行了调整，但这并不影响其作为发布订阅模式框架的使用。
 
-## 关于发布订阅
-一开始 Kokoro 是作为发布订阅模式框架而出现的，我们对 kokoro 定义及实现上的改变并不会影响其作为发布订阅模式框架来使用。
-
-我们有官方包 `kokoro-flume-channel` 来为 Context 实现 Mode MPSC，同时 MPSC 也是可扩展的且遵循 `Context` 的设计原则。
+为了方便用户实现 Mode MPSC，我们提供了一个官方包 `kokoro-flume-channel`。该包遵循 `Context` 的设计原则，支持可扩展性。
 
 [关于 kokoro-flume-channel](../../default-implement/pub-sub)
 
 ## 定位问题
-可以看出，`kokoro-core` 本身极小甚至缺少默认实现，如果需要用到，则按照相同范式再次编写一个即可。
 
-你说的没错，`kokoro-core` 的存在感极低。并且好像其存在没什么意义，甚至会有人说过度抽象会增加开发成本。
+`kokoro-core` 作为 Kokoro 框架的核心组件，虽然其本身并未包含完整的默认实现，但它在整个框架中扮演着至关重要的角色。由于 `kokoro-core` 高度抽象，它的存在感知度可能较低，但过度抽象是为了实现更高的可扩展性和灵活性。
 
-也是正确的，我不否定单独使用 `kokoro-core` 会徒增开发成本。并且会认可你的看法非常到位。
+那么，`kokoro-core` 的真正定位是什么呢？我们认为主要包括以下几点：
 
-所以让我们回到问题的本身，`kokoro-core` 的定位是什么，或者说其意义在于？
+1. **提供核心抽象**：`kokoro-core` 定义了 Kokoro 框架的核心抽象，如 `Context` 和 `Scope`，这些抽象为用户提供了丰富的扩展点，使得框架能够适应各种不同的应用场景。
 
-关于这个问题我有两个回答：
+2. **促进代码复用**：通过提供通用的接口和抽象，`kokoro-core` 鼓励开发者编写可复用的代码。这样，在不同的项目或领域中，开发者可以利用现有的实现快速构建出符合需求的应用程序。
 
-1. 推广这个范式或模式。
-2. 为我自己定下一个规范。
+4. **支持模块化开发**：`kokoro-core` 的设计允许开发者根据自己的需求选择性地引入和使用不同的模块。这种模块化开发方式有助于减少项目的复杂性，提高代码的可维护性。
 
-这个范式主要是为了可扩展，当没有统一的类型时，可扩展这个目标或许就并不好实现了。
+5. **推动生态发展**：通过提供清晰、稳定的接口和抽象，`kokoro-core` 鼓励第三方开发者为其编写扩展和插件。这将有助于形成一个繁荣的生态系统，使得 Kokoro 框架能够不断发展和壮大。
 
-并且我们一直讨论的是 `kokoro-core`，当你组合自己喜欢的库来合成自己需要的 Kokoro 时，你就会发现其用法的多样性。
-
-比如将 `kokoro-flume-channel` 与 `kokoro-default-impl::thread` 组合，你就会得到类似 ros 的效果。
-
-比如你不想要自己实现动态插件机制或与插件间沟通的能力，你就可以组合 `kokoro-dynamic-plugin` 与 `kokoro-flume-channel` 与 `kokoro-default-impl::plugin` 实现一个可动态扩展的应用程序，甚至比肩 vscode 这种使用动态语言编写的应用程序的扩展能力。
-
-我们不止希望如此，我们未来还会推出更多扩展实现，让 Kokoro 成为愿景中的 **元框架**。
-
-当然，你也可以编写自己的扩展实现，同时也可以以插件的形式编写静态/动态链接库。
-
+总之，`kokoro-core` 的定位是为用户提供一个灵活、可扩展且易于使用的核心框架。虽然它在某些方面可能显得过于抽象，但这种设计选择是为了更好地满足用户的多样化需求，推动框架的长远发展。
