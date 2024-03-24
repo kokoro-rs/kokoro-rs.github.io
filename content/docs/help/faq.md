@@ -9,31 +9,25 @@ sort_by = "weight"
 template = "docs/page.html"
 
 [extra]
-lead = "Answers to frequently asked questions."
 toc = true
 top = false
 +++
 
-## What is the AdiDoks?
+## Kokoro 到底是什么？
 
-AdiDoks is a Zola theme for Documentation's sites, ported by the Hugo Theme
-[Doks](https://getdoks.org), which is a pretty nice theme. Thanks a lot to 
-[*h-enk*](https://github.com/h-enk), the creator of the [Doks](https://getdoks.org).
+请看 [关于 Kokoro-core](../../getting-started/about-core)
 
-## Keyboard shortcuts for search?
+## 这个网站怎么如此垃圾？
 
-- focus: `/`
-- select: `↓` and `↑`
-- open: `Enter`
-- close: `Esc`
+亲，还没写完呢。
 
-## Other documentation?
+## 哪里可以找到更完整的文档？
 
-- [Netlify](https://docs.netlify.com/)
-- [Zola](https://www.getzola.org/documentation/getting-started/overview/)
+- [docs.rs](https://docs.rs/)
+- [docs.rs/kokoro](https://docs.rs/kokoro/latest/kokoro/)
 
-## Contact the creator?
+## 在哪里提问？
 
-Send *Aaran Xu* an E-mail:
-
-- <aaranxu@outlook.com>
+- <adqber123@outlook.com>
+- [QQ群](../qq-group)
+- [Github 仓库](https://github.com/kokoro-rs/kokoro/)
