@@ -3,7 +3,7 @@ title = '''Kokoro'''
 
 # The homepage contents
 [extra]
-title_ = '<img src="kokoro-icon.svg"/>'
+title_ = '<img src="kokoro-icon.svg" style="max-width:100%;height:auto"/>'
 lead = '框架的框架'
 url = "/docs/getting-started/introduction/"
 url_button = "快速开始"
