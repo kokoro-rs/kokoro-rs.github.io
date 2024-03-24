@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://kokoro.github.io"
+base_url = "https://kokoro-rs.github.io"
 
 title = "Kokoro"
 # Whether to automatically compile all Sass files in the sass directory
