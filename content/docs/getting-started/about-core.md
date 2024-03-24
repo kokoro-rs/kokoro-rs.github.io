@@ -10,7 +10,7 @@ template = "docs/page.html"
 
 [extra]
 lead = '''
-Kokoro 是为了构建高解耦的应用程序而存在的，那么我们对他的定义即使如此。
+Kokoro 是为了构建高解耦的应用程序而存在的。
 '''
 toc = true
 top = false
