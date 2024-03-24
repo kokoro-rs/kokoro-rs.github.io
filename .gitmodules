@@ -1,6 +1,3 @@
-[submodule "themes/adidoks"]
-	path = themes/adidoks
-	url = https://github.com/aaranxu/adidoks.git
 [submodule "themes/kokoro"]
 	path = themes/kokoro
 	url = https://github.com/kokoro-rs/docs-theme.git
