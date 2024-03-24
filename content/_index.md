@@ -18,26 +18,26 @@ url = "/docs/getting-started/introduction/"
 weight = 10
 
 [[extra.list]]
-title = "内存安全，无不可逆副作用"
-content = '一般情况下来说是这样的，<br/>毕竟是 Rust 写的……'
+title = "内存安全 🦀"
+content = '基于 Rust 语言，本框架保证了内存安全性，且无需手动管理副作用。'
 
 [[extra.list]]
-title = "我们这个框架很快 ⚡️"
-content = '能有多慢呢？<br/>你可以来试试。'
+title = "高性能です ⚡️"
+content = '设计高效，确保快速响应，性能不凡。'
 
 [[extra.list]]
-title = "稳定且生产可用"
-content = '当然指的是未来。<br/>Kokoro 未来可期，现在仍然存在一些小问题。'
+title = "稳定且可用 🏗️"
+content = '框架正在持续优化，旨在未来提供稳定可靠的生产环境支持。'
 
 [[extra.list]]
-title = "让 Rust 也可以动态扩展"
-content = '默认实现完整的动态插件系统，通过发布订阅与动态链接库实现。<br/>插件可以是动态链接库，也可以是 wasm。'
+title = "动态扩展 🔌"
+content = '支持动态插件，包括 wasm、动态链接库，以实现功能扩展。'
 
 [[extra.list]]
-title = "实现模块热更新"
-content = '通过动态插件系统完成，<br/>不用过多逻辑，简单易懂。'
+title = "模块热更新 🔄"
+content = '简化的热更新流程，易于操作。'
 
 [[extra.list]]
-title = "极高的可能性"
-content = '其实是编程范式/模式。<br/>所谓框架的框架，不是狭义上的框架。'
+title = "高灵活性 🌟"
+content = '自身高度解耦，可随意扩展或更改。'
 +++
