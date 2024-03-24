@@ -19,23 +19,23 @@ weight = 10
 
 [[extra.list]]
 title = "内存安全 🦀"
-content = '基于 Rust 语言，本框架保证了内存安全性，且无需手动管理副作用。'
+content = '基于 Rust 语言，保证了内存安全性，无需手动管理副作用。'
 
 [[extra.list]]
 title = "高性能です ⚡️"
 content = '设计高效，确保快速响应，性能不凡。'
 
 [[extra.list]]
-title = "稳定且可用 🏗️"
+title = "稳定可用 🏗️"
 content = '框架正在持续优化，旨在未来提供稳定可靠的生产环境支持。'
 
 [[extra.list]]
-title = "动态扩展 🔌"
+title = "动态插件 🔌"
 content = '支持动态插件，包括 wasm、动态链接库，以实现功能扩展。'
 
 [[extra.list]]
 title = "模块热更新 🔄"
-content = '简化的热更新流程，易于操作。'
+content = '基于动态插件的热更新流程，易于理解，便于操作。'
 
 [[extra.list]]
 title = "高灵活性 🌟"
