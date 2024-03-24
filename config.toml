@@ -21,5 +21,10 @@ highlight_code = true
 
 [extra]
 # Put all your custom variables here
+author = "BERADQ"
+github = "https://github.com/kokoro-rs/kokoro"
+twitter = ""
+email = "adqber123@outlook.com"
+
 [extra.footer]
 info = '也许你会喜欢 <a href="https://github.com/cordiverse/cordis">cordis</a> 其直接导致了 <a href="#">Kokoro</a> 的出现'
