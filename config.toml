@@ -24,6 +24,7 @@ highlight_code = true
 author = "BERADQ"
 github = "https://github.com/kokoro-rs/kokoro"
 twitter = false
+open.enable = false
 email = "adqber123@outlook.com"
 
 [extra.footer]
