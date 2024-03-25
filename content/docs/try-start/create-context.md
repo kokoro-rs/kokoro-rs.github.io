@@ -9,39 +9,43 @@ sort_by = "weight"
 template = "docs/page.html"
 
 [extra]
-lead = "使用 Kokoro 从创建上下文开始。"
+lead = "本文将带您了解如何在 Kokoro 中构建上下文。"
 toc = true
 top = false
 +++
 
-## Context
+## 理解 Context
 
-`Context` 是 Kokoro 的核心，一切都从这里出发。
+在 Kokoro 框架中，`Context` 是核心组件，负责协调资源和行为模式。
 
-它有两个泛型，分别是 `Resource` 和 `Mode`。
+### 泛型参数：Resource 和 Mode
 
-首先要决定 `Mode` 它指明了 `Context` 在何种模式下工作。
+`Context` 结构体包含两个泛型参数：`Resource` 和 `Mode`，它们定义了上下文的资源类型和工作模式。
 
-我们这里使用 [kokoro-flume-channel](../../default-implement/pub-sub) 中的 `MPSC`。
+### 工作模式的选择
 
-它可以提供发布订阅的能力，并且 `kokoro-plugin-tiny-http` 也是基于发布订阅的。
+您需要首先确定 `Context` 的工作模式。在本例中，我们采用 `MPSC` 模式，该模式源自 [kokoro-flume-channel](../../default-implement/pub-sub)，支持发布-订阅机制，适用于 `kokoro-plugin-tiny-http` 等基于发布-订阅的插件。
 
-[kokoro-flume-channel](../../default-implement/pub-sub) 提供了一个简单创建 Context 的工具函数。
+### 快速创建 Context
+
+使用 [kokoro-flume-channel](../../default-implement/pub-sub) 提供的工具函数，您可以轻松创建一个 `MPSC` 模式的 `Context`：
 
 ```rust
 fn main() {
-    // 创建了一个工作在 MPSC 模式下的上下文
+    // 在 MPSC 模式下初始化上下文
     let ctx = channel_ctx();
 }
 ```
 
-这样创建的 `Context` 它的 `Resource` 是 `()` 我们暂时不需要为起点增加任何资源，所以让我们保持默认。
+默认情况下，创建的 `Context` 的 `Resource` 类型为 `()`，这意味着初始资源为空。
 
-## 进阶
+## 自定义 Context
 
-说白了就是自己从头创建 `Context`。
+进阶用户可能希望从头开始构建自定义的 `Context`。
 
-假设我们仍然使用 `MPSC` 但是 `Resource` 改用自己的，比如说
+### 自定义 Resource
+
+例如，如果您希望 `Resource` 使用自定义类型，如下所示：
 
 ```rust
 struct MyName {
@@ -49,7 +53,9 @@ struct MyName {
 }
 ```
 
-那么 `Context` 可以这样创建
+### 创建自定义 Context
+
+您可以按照以下步骤创建一个携带自定义资源的 `Context`：
 
 ```rust
 fn main() {
@@ -60,6 +66,12 @@ fn main() {
 }
 ```
 
-可以看到有一堆 `Arc`，但是不用怕，再慢也不会卡死。
+在这个过程中，您会看到多个 `Arc` 的使用，这是为了确保资源在多线程中的安全共享。
 
-这里面出现了 `Scope`，这个稍后再说。
+`Scope` 是另一个重要概念，我们将在后续章节中详细介绍。
+
+## 结语
+
+通过以上步骤，您可以灵活地创建和管理 Kokoro 中的上下文，为接下来的开发打下坚实基础。
+
+在成功创建 Context 之后，下一步是将插件注册到上下文中。详细请参阅 [**注册插件**](../try-start/plug-in) 部分。

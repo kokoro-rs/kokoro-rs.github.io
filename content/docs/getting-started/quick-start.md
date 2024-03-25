@@ -14,20 +14,28 @@ toc = true
 top = false
 +++
 
-## 环境搭建
+## Rust 开发环境配置
 
-首先你需要 Rust 开发环境，这里不再过多赘述。
+为了开始使用 Rust 进行项目开发，您首先需要配置 Rust 开发环境。详细的安装指南请参考 [Rust 官方文档](https://doc.rust-lang.org/book/ch01-01-installation.html)。
 
-创建一个项目。
+## 项目创建与依赖管理
 
-你可以使用 Cargo 来管理依赖，使用以下指令将 Kokoro 作为依赖添加到你的项目中。
+一旦您的开发环境准备就绪，您可以创建一个新的 Rust 项目。Rust 的包管理器 Cargo 允许您轻松管理项目依赖。
+
+### 添加 Kokoro 作为项目依赖
+
+可以通过以下 Cargo 命令将其添加到您的项目中：
 
 ```bash
 cargo add kokoro
 ```
 
-然后在你需要用到 kokoro 的地方引入它。
+### 引入 Kokoro 库
+
+在项目中的适当位置，您需要引入 Kokoro 库以使用其功能。
 
 ```rust
 use kokoro::prelude::*;
 ```
+
+在完成基本的环境搭建和依赖管理后，您可以阅读 [**创建上下文**](../../try-start/create-context) 部分来进一步了解如何在您的项目中有效地使用 Kokoro 库。

@@ -10,15 +10,11 @@ template = "docs/page.html"
 
 [extra]
 lead = '''
-关于 Kokoro 这个名字的由来，一开始是为了致敬 JavaScript 库 cordis。
+关于 Kokoro 这一名称的起源，其初衷是向 JavaScript 库 cordis 致敬。
 <br/>
-但是 Kokoro 发展至今，已经脱离了 cordis 的思想与概念。
+随着 Kokoro 的发展，它在理念上已经与 cordis 有所偏离。我们更希望您将 Kokoro 理解为 <b>心</b>，它不仅仅是一个实现发布/订阅模式的框架，而是成为高度解耦合应用程序的核心。
 <br/>
-所以我们更加希望你将 Kokoro 作为“心”来解读。
-<br/>
-我们希望 Kokoro 能够作为高解耦的应用程序的心脏，而不单纯是一个发布订阅模式框架。
-<br/>
-具体请见 <a href="../about-core">关于 kokoro-core</a>
+有关 kokoro-core 的更多信息，请参阅<a href="../about-core">关于 kokoro-core</a>。
 '''
 toc = true
 top = false
