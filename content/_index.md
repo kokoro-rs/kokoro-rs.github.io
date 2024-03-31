@@ -1,5 +1,5 @@
 +++
-title = '''Kokoro'''
+title = '''Cordis'''
 
 # The homepage contents
 [extra]
