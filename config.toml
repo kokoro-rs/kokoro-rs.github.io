@@ -1,7 +1,7 @@
 # The URL the site will be built for
-base_url = "https://kokoro-rs.dev"
+base_url = "https://www.kokoro-rs.dev"
 
-title = "Cordis"
+title = "Kokoro"
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = false
 
