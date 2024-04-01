@@ -1,5 +1,5 @@
 +++
-title = '''Cordis'''
+title = '''Kokoro'''
 
 # The homepage contents
 [extra]
@@ -7,7 +7,7 @@ title_ = '<img src="kokoro-icon.svg" style="max-width:100%;height:auto"/>'
 lead = '框架的框架'
 url = "/docs/getting-started/introduction/"
 url_button = "快速开始"
-repo_version = "GitHub v0.0.5"
+repo_version = "GitHub v0.0.6"
 repo_license = "Open-source MIT License."
 repo_url = "https://github.com/kokoro-rs/kokoro"
 # Menu items
@@ -19,7 +19,7 @@ weight = 10
 
 [[extra.list]]
 title = "内存安全 🦀"
-content = '基于 JavaScript 语言，保证不了内存安全性，但是无需手动管理副作用。'
+content = '基于 Rust 语言，保证了内存安全性，无需手动管理副作用。'
 
 [[extra.list]]
 title = "高性能です ⚡️"
@@ -39,5 +39,5 @@ content = '基于动态插件的热更新流程，易于理解，便于操作。
 
 [[extra.list]]
 title = "高灵活度 🌟"
-content = '自身高度解耦，可随意扩展或更改。模块化，松散耦合，可热更新，分布式，尽在 Cordis。'
+content = '自身高度解耦，可随意扩展或更改。模块化，松散耦合，可热更新，分布式，尽在 Kokoro。'
 +++
