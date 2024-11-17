@@ -4,7 +4,7 @@ title = '''Kokoro'''
 # The homepage contents
 [extra]
 title_ = '<img src="kokoro-icon.svg" style="max-width:100%;height:auto"/>'
-lead = '框架的框架'
+lead = '该文档暂时废弃。请勿以该文档为准！'
 url = "/docs/getting-started/introduction/"
 url_button = "快速开始"
 repo_version = "GitHub v0.0.6"
